@@ -44,10 +44,7 @@ async function run() {
             res.send(result);
         });
 
-        app.get("/details/:id", async (req, res) => {
-            const result = await addtocartCollection.find().toArray();
-            res.send(result);
-        });
+        
 
         app.delete("/details/:id", async (req, res) => {
             const id = req.params.id;

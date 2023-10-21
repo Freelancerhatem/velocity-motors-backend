@@ -23,8 +23,8 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
 
-        await client.connect();
-        await client.db("admin").command({ ping: 1 });
+        // await client.connect();
+        // await client.db("admin").command({ ping: 1 });
         const ProductCollection = client.db('server-side-carsdata').collection('carsdata');
         const addtocartCollection = client.db('server-side-carsdata').collection('addcart');
         const categoryCollection = client.db('server-side-carsdata').collection('sliderdata');
@@ -41,7 +41,7 @@ async function run() {
             const id = req.params.id;
 
             const result = await addtocartCollection.insertOne(data);
-
+            
             res.send(result);
         });
 
@@ -49,7 +49,14 @@ async function run() {
             const result = await addtocartCollection.find().toArray();
             res.send(result);
         });
-        
+
+        app.get("/categories", async (req, res) => {
+            const result = await categoryCollection.find().toArray();
+            console.log(result)
+            res.send(result);
+        });
+
+
 
 
         app.delete("/details/:id", async (req, res) => {

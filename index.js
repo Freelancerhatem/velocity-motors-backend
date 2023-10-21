@@ -49,11 +49,7 @@ async function run() {
             const result = await addtocartCollection.find().toArray();
             res.send(result);
         });
-        app.get("/category", async (req, res) => {
-            const result = await categoryCollection.find().toArray();
-            res.send(result);
-            console.log(result)
-        });
+        
 
 
         app.delete("/details/:id", async (req, res) => {
